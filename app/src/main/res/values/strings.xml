@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">AndroidODemo</string>
+
+    <array name="activity_item">
+        <item>UI</item>
+        <item>Intent</item>
+        <item>TelephonyMgr</item>
+        <item>SmsManager</item>
+        <item>AudioMgr</item>
+        <item>Vibrator</item>
+        <item>Compass</item>
+        <item>GPS</item>
+        <item>Camera</item>
+    </array>
 </resources>
