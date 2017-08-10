@@ -3,15 +3,8 @@
 
     <array name="activity_item">
         <item>Notification</item>
-        <item>Intent</item>
-        <item>TelephonyMgr</item>
-        <item>SmsManager</item>
-        <item>AudioMgr</item>
-        <item>Vibrator</item>
-        <item>Compass</item>
-        <item>GPS</item>
-        <item>Camera</item>
     </array>
     <string name="notify_test">This is a notification channel %1$s</string>
     <string name="channel_description">channel description</string>
+    <string name="title_activity_notification">NotificationActivity</string>
 </resources>
