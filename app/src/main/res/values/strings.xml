@@ -2,7 +2,7 @@
     <string name="app_name">AndroidODemo</string>
 
     <array name="activity_item">
-        <item>UI</item>
+        <item>Notification</item>
         <item>Intent</item>
         <item>TelephonyMgr</item>
         <item>SmsManager</item>
@@ -12,4 +12,6 @@
         <item>GPS</item>
         <item>Camera</item>
     </array>
+    <string name="notify_test">This is a notification channel %1$s</string>
+    <string name="channel_description">channel description</string>
 </resources>
