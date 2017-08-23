@@ -3,6 +3,7 @@
 
     <array name="activity_item">
         <item>Notification</item>
+        <item>AutoFill</item>
     </array>
     <string name="title_activity_notification">NotificationActivity</string>
 
@@ -32,4 +33,19 @@
     <string name="main_secondary_config">Go to secondary settings</string>
     <string name="primary2_body">Second Notification for Primary Channel</string>
     <string name="secondary2_body">Second Notification for Secondary Channel</string>
+
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="navigation_button_edittext_login_label">Sample Login Using EditTexts</string>
+    <string name="clear_label">Clear</string>
+    <string name="login_label">Login</string>
+    <string name="welcome_text">Success!</string>
+    <plurals name="welcome_page_countdown">
+        <item quantity="one">Automatically return to main page in %d second.</item>
+        <item quantity="other">Automatically return to main page in %d seconds.</item>
+    </plurals>
+    <string name="edittext_login_info">This is a sample login page that uses standard EditTexts
+        from the UI toolkit. EditTexts are already optimized for autofill so extra autofill-specific
+        code is almost never needed.
+    </string>
 </resources>

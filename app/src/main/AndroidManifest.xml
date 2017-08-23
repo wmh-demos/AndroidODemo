@@ -21,6 +21,10 @@
             android:label="@string/title_activity_notification"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="wayne.me.androidodemo.autofill.StandardSignInActivity"
+            android:taskAffinity=".StandardSignInActivity" />
+        <activity android:name="wayne.me.androidodemo.autofill.WelcomeActivity" />
     </application>
 
 </manifest>

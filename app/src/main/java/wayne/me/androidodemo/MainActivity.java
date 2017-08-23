@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import wayne.me.androidodemo.autofill.StandardSignInActivity;
 import wayne.me.androidodemo.notification.NotificationActivity;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private static final int INDEX_TEST_NOTIFY = 0;
+    private static final int INDEX_TEST_AUTOFILL = 1;
 
     private Context mContext;
 
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         switch (position) {
             case INDEX_TEST_NOTIFY:
                 startActivity(new Intent(this, NotificationActivity.class));
+                break;
+            case INDEX_TEST_AUTOFILL:
+                startActivity(StandardSignInActivity.getStartActivityIntent(this));
                 break;
         }
     }
