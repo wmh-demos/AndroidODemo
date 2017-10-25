@@ -55,7 +55,7 @@ public class NotificationHelper extends ContextWrapper {
 
         NotificationChannel chan2 = new NotificationChannel(SECONDARY_CHANNEL,
                 getString(R.string.noti_channel_second), NotificationManager.IMPORTANCE_HIGH);
-        chan1.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        chan1.setImportance(NotificationManager.IMPORTANCE_HIGH);
         chan1.setSound(Settings.System.DEFAULT_NOTIFICATION_URI,
                 Notification.AUDIO_ATTRIBUTES_DEFAULT);
         chan2.setLightColor(Color.BLUE);
