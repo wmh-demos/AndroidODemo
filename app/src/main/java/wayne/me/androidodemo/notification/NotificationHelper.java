@@ -22,6 +22,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Color;
+import android.provider.Settings;
 
 import wayne.me.androidodemo.R;
 
@@ -37,7 +38,6 @@ public class NotificationHelper extends ContextWrapper {
 
     /**
      * Registers notification channels, which can be used later by individual notifications.
-     *
      * @param ctx The application context
      */
     public NotificationHelper(Context ctx) {
@@ -45,16 +45,22 @@ public class NotificationHelper extends ContextWrapper {
 
         NotificationChannel chan1 = new NotificationChannel(PRIMARY_CHANNEL,
                 getString(R.string.noti_channel_default), NotificationManager.IMPORTANCE_DEFAULT);
+        chan1.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        chan1.setSound(Settings.System.DEFAULT_NOTIFICATION_URI,
+                Notification.AUDIO_ATTRIBUTES_DEFAULT);
         chan1.setLightColor(Color.GREEN);
-        chan1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         chan1.enableVibration(true);
+        chan1.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         getManager().createNotificationChannel(chan1);
 
         NotificationChannel chan2 = new NotificationChannel(SECONDARY_CHANNEL,
                 getString(R.string.noti_channel_second), NotificationManager.IMPORTANCE_HIGH);
+        chan1.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
+        chan1.setSound(Settings.System.DEFAULT_NOTIFICATION_URI,
+                Notification.AUDIO_ATTRIBUTES_DEFAULT);
         chan2.setLightColor(Color.BLUE);
-        chan2.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         chan2.enableVibration(true);
+        chan2.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         getManager().createNotificationChannel(chan2);
     }
 
@@ -63,7 +69,6 @@ public class NotificationHelper extends ContextWrapper {
      *
      * Provide the builder rather than the notification it's self as useful for making notification
      * changes.
-     *
      * @param title the title of the notification
      * @param body the body text for the notification
      * @return the builder as it keeps a reference to the notification (since API 24)
@@ -78,7 +83,6 @@ public class NotificationHelper extends ContextWrapper {
 
     /**
      * Build notification for secondary channel.
-     *
      * @param title Title for notification.
      * @param body Message for notification.
      * @return A Notification.Builder configured with the selected channel and details
@@ -93,7 +97,6 @@ public class NotificationHelper extends ContextWrapper {
 
     /**
      * Send a notification.
-     *
      * @param id The ID of the notification
      * @param notification The notification object
      */
@@ -103,7 +106,6 @@ public class NotificationHelper extends ContextWrapper {
 
     /**
      * Get the small icon for this app
-     *
      * @return The small icon resource id
      */
     private int getSmallIcon() {
@@ -114,7 +116,6 @@ public class NotificationHelper extends ContextWrapper {
      * Get the notification mManager.
      *
      * Utility method as this helper works with it a lot.
-     *
      * @return The system service NotificationManager
      */
     private NotificationManager getManager() {
