@@ -5,26 +5,41 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.concurrent.TimeUnit;
+
 import wayne.me.androidodemo.broadcast.DynamicReceiver;
 import wayne.me.androidodemo.notification.NotificationActivity;
+import wayne.me.androidodemo.service.BackgroundService;
 import wayne.me.common.CommonConstants;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
+        Handler.Callback {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int INDEX_TEST_NOTIFY = 0;
     private static final int INDEX_TEST_BROADCAST = 1;
+    private static final int INDEX_TEST_SERVICE = 2;
+
+    private static final int MSG_START_BACKGROUND_SERVICE = 1000;
+    private static final long BACKGROUND_SERVICE_CHECK_INTERVAL = TimeUnit.SECONDS.toMillis(90);
 
     private Context mContext;
 
     private ListView mListView;
 
     private BroadcastReceiver mReceiver = new DynamicReceiver();
+
+    private Handler mHandler = new Handler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onDestroy() {
         super.onDestroy();
         unregisterDynamicReceiver();
+        mHandler.removeMessages(MSG_START_BACKGROUND_SERVICE);
     }
 
     private void initView() {
@@ -62,6 +78,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case INDEX_TEST_BROADCAST:
                 registerDynamicReceiver();
                 break;
+            case INDEX_TEST_SERVICE:
+                Toast.makeText(this, "delay start service success", Toast.LENGTH_LONG).show();
+                mHandler.removeMessages(MSG_START_BACKGROUND_SERVICE);
+                mHandler.sendEmptyMessageDelayed(MSG_START_BACKGROUND_SERVICE,
+                        BACKGROUND_SERVICE_CHECK_INTERVAL);
+                break;
         }
     }
 
@@ -82,5 +104,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void unregisterDynamicReceiver() {
         unregisterReceiver(mReceiver);
+    }
+
+    @Override
+    public boolean handleMessage(Message msg) {
+        if (msg.what == MSG_START_BACKGROUND_SERVICE) {
+            Log.d(TAG, "startBackgroundService: %b" + BackgroundService.sRunning);
+
+            if (!BackgroundService.sRunning) {
+                try {
+                    Intent intent = new Intent(this, BackgroundService.class);
+                    startService(intent);
+//                startForegroundService(intent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return false;
     }
 }

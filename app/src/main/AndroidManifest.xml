@@ -57,6 +57,8 @@
                 <action android:name="wayne.me.androidodemo.action.APP2_TEST_PERM_SIGN_OR_SYSTEM" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".service.BackgroundService" />
     </application>
 
 </manifest>
