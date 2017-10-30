@@ -48,4 +48,8 @@
         from the UI toolkit. EditTexts are already optimized for autofill so extra autofill-specific
         code is almost never needed.
     </string>
+
+    <string name="perm_desc_normal">Test normal permission</string>
+    <string name="perm_desc_sign">Test signature permission</string>
+    <string name="perm_desc_sign_or_system">Test signature_or_system permission</string>
 </resources>

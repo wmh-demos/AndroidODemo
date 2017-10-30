@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="wayne.me.androidodemo"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <permission
+        android:name="wayne.me.androidodemo.perm.NORMAL"
+        android:description="@string/perm_desc_normal"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="wayne.me.androidodemo.perm.SIGN"
+        android:description="@string/perm_desc_sign"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="wayne.me.androidodemo.perm.SIGN_OR_SYSTEM"
+        android:description="@string/perm_desc_sign_or_system"
+        android:protectionLevel="signatureOrSystem"
+        tools:ignore="SignatureOrSystemPermissions" />
 
     <application
         android:allowBackup="true"
