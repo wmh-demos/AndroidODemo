@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private ListView mListView;
 
     private BroadcastReceiver mReceiver = new DynamicReceiver();
+    private boolean mRegistered = false;
 
     private Handler mHandler = new Handler(this);
 
@@ -99,11 +100,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         filter.addAction(CommonConstants.ACTION_APP2_TEST_PERM_SIGN_OR_SYSTEM);
 
         registerReceiver(mReceiver, filter);
+        mRegistered = true;
         Toast.makeText(this, "registerReceiver success", Toast.LENGTH_LONG).show();
     }
 
     private void unregisterDynamicReceiver() {
-        unregisterReceiver(mReceiver);
+        if (mRegistered) {
+            unregisterReceiver(mReceiver);
+            mRegistered = false;
+        }
     }
 
     @Override
@@ -122,5 +127,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         }
         return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
