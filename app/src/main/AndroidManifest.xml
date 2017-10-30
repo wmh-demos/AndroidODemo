@@ -17,6 +17,10 @@
         android:protectionLevel="signatureOrSystem"
         tools:ignore="SignatureOrSystemPermissions" />
 
+    <uses-permission android:name="wayne.me.androidodemo.perm.NORMAL" />
+    <uses-permission android:name="wayne.me.androidodemo.perm.SIGN" />
+    <uses-permission android:name="wayne.me.androidodemo.perm.SIGN_OR_SYSTEM" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -40,6 +44,19 @@
             android:name="wayne.me.androidodemo.autofill.StandardSignInActivity"
             android:taskAffinity=".StandardSignInActivity" />
         <activity android:name="wayne.me.androidodemo.autofill.WelcomeActivity" />
+
+        <receiver android:name=".broadcast.StaticReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+
+                <action android:name="wayne.me.androidodemo.action.APP2_TEST_TARGET" />
+                <action android:name="wayne.me.androidodemo.action.APP2_TEST_NORMAL" />
+                <action android:name="wayne.me.androidodemo.action.APP2_TEST_PERM_NORMAL" />
+                <action android:name="wayne.me.androidodemo.action.APP2_TEST_PERM_SIGN" />
+                <action android:name="wayne.me.androidodemo.action.APP2_TEST_PERM_SIGN_OR_SYSTEM" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
